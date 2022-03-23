@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2022-03-23 15:52:48
+  end: 2022-03-23 15:52:48
+  attendees: 1
+  subject: MyString
+  reservation_code: MyString
+  email: MyString
+  room: one
+
+two:
+  start: 2022-03-23 15:52:48
+  end: 2022-03-23 15:52:48
+  attendees: 1
+  subject: MyString
+  reservation_code: MyString
+  email: MyString
+  room: two

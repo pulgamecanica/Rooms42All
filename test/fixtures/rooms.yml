@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  capacity: 9.99
+  is_available?: false
+  name: MyString
+  location: MyText
+  is_accessible?: false
+
+two:
+  capacity: 9.99
+  is_available?: false
+  name: MyString
+  location: MyText
+  is_accessible?: false
