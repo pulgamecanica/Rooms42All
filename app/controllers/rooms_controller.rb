@@ -76,13 +76,14 @@ class RoomsController < ApplicationController
       return
     end
     # Filter All rooms that are available AT ALL TIME BETWEEN START AND END
-    find_min_cap = Room.where(is_available: true) # .and(Room.where(capacity: min_capacity - 2..min_capacity + 2))
+    find_min_cap = Room.where("is_available == ? AND capacity >= ?", true, min_capacity) # .and(Room.where(capacity: min_capacity - 2..min_capacity + 2))
     find_min_cap.each do |room|
       ranking.store(room, (min_capacity - room.capacity).abs)
     end
     puts "*" * 10
     puts ranking.sort
     puts "*" * 10
+    @rooms = find_min_cap
     find_min_cap
   end
 
