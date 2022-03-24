@@ -1,13 +1,16 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[ show edit update destroy ] 
+  before_action :set_room, only: %i[ edit update destroy ] 
 
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
-  end
-
-  # GET /rooms/1 or /rooms/1.json
-  def show
+    @page = params.fetch(:page, 0).to_i
+    if ((@page + 1) * 5) >= Room.count
+      @rooms = Room.last(5)
+      @last = true
+    else
+      @rooms = Room.all.offset(@page * 5).limit(5)
+      @last = false
+    end
   end
 
   # GET /rooms/new
@@ -17,6 +20,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
+    @new_reservation = @room.reservations.build(room: @room)
   end
 
   # POST /rooms or /rooms.json
@@ -25,8 +29,8 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
-        format.json { render :show, status: :created, location: @room }
+        format.html { redirect_to edit_room_path(@room), notice: "Room was successfully created." }
+        format.json { render :edit, status: :created, location: @room }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -38,8 +42,8 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
-        format.json { render :show, status: :ok, location: @room }
+        format.html { redirect_to edit_room_path(@room), notice: "Room was successfully updated." }
+        format.json { render :edit, status: :ok, location: @room }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @room.errors, status: :unprocessable_entity }

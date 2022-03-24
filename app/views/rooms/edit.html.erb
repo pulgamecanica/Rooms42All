@@ -1,11 +1,42 @@
-<div class="row">
-	<div class="col-md-4">
-		<%= link_to 'Back', rooms_path, class: 'btn btn-dark mb-3' %>
+<div class="container">
+	<%= link_to 'Back', rooms_path, class: 'btn btn-secondary btn-lg mt-3 mb-3' %>
+	<div class="row">
+		<div class="col-md-3 mb-3">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title text-center">Editing Room</h4>
+					<%= render 'form', room: @room %>
+					<%= link_to 'Destroy Room', @room, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger mt-1" %>
+				</div>
+			</div>		
+		</div>
+		<div class="col-md-9">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title text-center m-4">Reservations <span class="badge badge-primary"><%= @room.reservations.count %></span></h4>
+					<% @room.reservations.order(:start).each do  |reservation| %>
+						<% if reservation.persisted? %>
+							<%= link_to edit_reservation_path(reservation), class: "text-decoration-none" do %>
+								<h4 class="bg-light p-3 text-center">
+									<p class="text-secondary" >[<%= reservation.start.strftime("%d/%m %H:%M") %>] - [<%= reservation.end.strftime("%d/%m %H:%M") %>]</p>
+									<p># of atendees <%= reservation.attendees %></p>
+									<p>contact: <%= reservation.email %></p>
+								</h4>
+							<% end %>
+						<% end %>
+					<% end %>
+
+					<div class="container col-auto mt-5 text-center" id="new-res-form">
+						<button class="btn btn-primary" onclick="create_match()">New Reservation</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-<h1>Editing Room</h1>
 
-<%= render 'form', room: @room %>
-
-<%= link_to 'Show', @room %> |
-<%= link_to 'Back', rooms_path %>
+<script>
+function create_match() {
+	$("#new-res-form").html("<%= j render 'new_reservation' %>");
+}
+</script>

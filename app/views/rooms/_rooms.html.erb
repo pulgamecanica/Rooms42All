@@ -1,0 +1,36 @@
+<% @rooms.each do |room| %>
+  <%= link_to edit_room_path(room.id), class: 'text-decoration-none' do %>
+    <div class="card mb-3 post-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <% if room.is_available %>
+                <span class="badge badge-primary text-primary mb-3 bg-info"> Available until ... </span>
+              <% else %>
+                <span class="badge badge-secondary text-danger mb-3 bg-warning"> Unavailable until ... </span>
+              <% end %>
+              <span class="badge badge-secondary mb-3"> <%= room.capacity %> </span>
+              <h5 class="card-title mb-2 text-dark"> <%= room.name %> </h5>
+              <p class="text-secondary mb-0"> Location: <%= room.location %> </p>
+              <p class="text-secondary mb-0"> Is Accessible? <%= room.is_accessible ? "Yes" : "No" %> </p>
+            </div>
+            <div class="col-md-10">
+              <% room.reservations.each do |reservation| %>
+                <hr>
+                <div class="row">
+                  <div class="col-md-8 col-sm-auto">
+                    <h6><%= reservation.subject %></h6>
+                  </div>
+                  <div class="col-md-4 col-sm-auto">
+                    <span class="badge badge-secondary text-primay bg-secondary">
+                      <%= reservation.start.strftime("%d/%m/%y [%H:%M]") %> - <%= reservation.end.strftime("%d/%m/%y [%H:%M]") %>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+<% end %>

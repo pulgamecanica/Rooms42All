@@ -17,10 +17,17 @@
 		)
 	if room.save
 		3.times do |y|
-			start_date = Faker::Date.between(from: 2.days.ago, to: 1.days.ago)
+			start_date = Faker::Date.between(from: 2.days.ago, to: 1.days.ago).to_datetime
+			start_date = start_date.change(hour: rand(0..23))
+			start_date = start_date.change(min: rand(0..59))
+			start_date = start_date.change(sec: rand(0..59))
+			end_date = Faker::Date.between(from: start_date, to: Date.today).to_datetime
+			end_date = end_date.change(hour: start_date.hour + 1)
+			end_date = end_date.change(min: rand(0..59))
+			end_date = end_date.change(sec: rand(0..59))
 			Reservation.create!(
 					start: start_date,
-					end: Faker::Date.between(from: start_date, to: Date.today),
+					end: end_date,
 					attendees: rand(1..50),
 					subject: Faker::Science.science,
 					reservation_code: Faker::Code.npi,
