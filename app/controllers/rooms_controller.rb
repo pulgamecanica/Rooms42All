@@ -83,6 +83,10 @@ class RoomsController < ApplicationController
     puts "*" * 10
     puts ranking.sort
     puts "*" * 10
+    find_min_cap = find_min_cap.sort {|a, b| b <=> a }
+    if (params[:is_accessible])
+      find_min_cap = find_min_cap.sort {|room| room.is_accessible ? 0 : 1}
+    end
     @rooms = find_min_cap
     find_min_cap
   end
