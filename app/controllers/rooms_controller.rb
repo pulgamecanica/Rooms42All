@@ -83,6 +83,7 @@ class RoomsController < ApplicationController
     min_capacity = params[:capacity].to_i # to_i = to integer (becausse we are recieving a string....)
     need_handicap_access = params[:is_accessible].nil? == true ? false : true
     need_projector = params[:need_projector].nil? == true ? false : true
+    need_audio = params[:audio_system].nil? == true ? false : true
     if min_capacity <= 0 || end_date.nil? || start_date.nil?
       return nil
     end
@@ -95,8 +96,11 @@ class RoomsController < ApplicationController
       accessible_rooms = accessible_rooms.where(has_projector: true)
       not_accessible_rooms = not_accessible_rooms.where(has_projector: true)
     end
-
-    if (params[:is_accessible])
+    if need_audio
+      accessible_rooms = accessible_rooms.where(audio_system: true)
+      not_accessible_rooms = not_accessible_rooms.where(audio_system: true)
+    end
+    if (need_handicap_access)
       find_min_cap = accessible_rooms + not_accessible_rooms
     else
       find_min_cap = not_accessible_rooms + accessible_rooms

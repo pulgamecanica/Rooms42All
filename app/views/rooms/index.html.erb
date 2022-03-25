@@ -19,7 +19,11 @@
               </div>
               <div class="col-auto m-auto">
                 <h5>Projector Room</h5>
-                <%= check_box_tag :need_projector, '', class: "form-control", checked: "" , onchange:'clickSubmitPlayers();' %>
+                <%= check_box_tag :need_projector, '', {class: "form-control"}, onchange:'clickSubmitPlayers();' %>
+              </div>
+              <div class="col-auto m-auto">
+                <h5> Audio System</h5>
+                <%= check_box_tag :audio_system, '', {class: "form-control"}, onchange:'clickSubmitPlayers();' %>
               </div>
             </div>
           </div>
