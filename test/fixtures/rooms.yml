@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  capacity: 1
+  is_available: 1
+  name: MyString
+  location: MyText
+  is_accessible: false
+  has_projector: false
+  audio_system: false
+  had_desk: false
+
+two:
+  capacity: 1
+  is_available: 1
+  name: MyString
+  location: MyText
+  is_accessible: false
+  has_projector: false
+  audio_system: false
+  had_desk: false

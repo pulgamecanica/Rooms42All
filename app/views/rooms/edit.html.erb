@@ -1,0 +1,45 @@
+<div class="container">
+	<%= link_to 'Back', rooms_path, class: 'btn btn-secondary btn-lg mt-3 mb-3' %>
+	<div class="row">
+		<div class="col-md-3 mb-3">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title text-center">Editing Room</h4>
+					<%= render 'form', room: @room %>
+					<%= link_to 'Destroy Room', @room, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger mt-1" %>
+				</div>
+			</div>		
+		</div>
+		<div class="col-md-9" id="room-reservations-container">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title text-center m-4">Reservations <span class="bg-info badge badge-primary"><%= @room.reservations.active_reservations.count %></span></h4>
+					<div class="container col-auto m-3 text-center" id="new-res-form">
+						<button class="btn btn-primary" onclick="create_match()">New Reservation</button>
+					</div>
+					<% @room.reservations.active_reservations.order(:time_start).each do  |reservation| %>
+						<% if reservation.persisted? %>
+							<%= link_to edit_reservation_path(reservation), class: "text-decoration-none" do %>
+								<h4 class="bg-light p-3 text-center">
+									<p class="text-secondary" >[<%= reservation.t_beginning.strftime("%d/%m %H:%M") %>] - [<%= reservation.t_ending.strftime("%d/%m %H:%M") %>]</p>
+									<p># of atendees <%= reservation.attendees %></p>
+									<p>contact: <%= reservation.email %></p>
+								</h4>
+							<% end %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="text-center p-3 mt-3 bg-light rounded">
+    <h6 class="btn btn-lg btn-outline-info m-auto">Room Daily Traffic</h6>
+	<%= line_chart @room.reservations.group_by_day(:t_beginning).count, loading: "Loading Graph..." %>
+	</div>
+</div>
+
+<script>
+function create_match() {
+	$("#new-res-form").html("<%= j render 'new_reservation' %>");
+}
+</script>

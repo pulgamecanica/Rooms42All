@@ -1,0 +1,26 @@
+// Place all the styles related to the Reservations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+	min-height: 100vh;
+	box-size: 0;
+}
+
+.container-edit {
+	background-color: rgba(200, 200, 200, 0.2);
+	margin: auto;
+	text-align: center;
+	height: 100%;
+	padding-top: 5rem;
+	border-radius: 1rem;
+	.field
+	{
+		margin-top: 2px;
+		.box-1 {
+			margin:	auto;
+			padding: 1rem;
+			display: inline-block;
+			width: auto;
+		}
+	}
+}

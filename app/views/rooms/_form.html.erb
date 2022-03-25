@@ -1,0 +1,57 @@
+<%= form_with(model: room) do |form| %>
+  <% if room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+      <ul>
+        <% room.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :capacity %>
+    <%= form.number_field :capacity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_available %>
+    <%= form.number_field :is_available %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_area :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_accessible %>
+    <%= form.check_box :is_accessible %>
+  </div>
+
+  <div class="field">
+    <%= form.label :has_projector %>
+    <%= form.check_box :has_projector %>
+  </div>
+
+  <div class="field">
+    <%= form.label :audio_system %>
+    <%= form.check_box :audio_system %>
+  </div>
+
+  <div class="field">
+    <%= form.label :had_desk %>
+    <%= form.check_box :had_desk %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

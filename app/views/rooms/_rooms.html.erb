@@ -1,0 +1,41 @@
+<% rooms.each do |room| %>
+  <div class="card mb-3 post-card">
+    <%= link_to edit_room_path(room.id), class: 'text-decoration-none' do %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <% if room.is_available %>
+              <span class="badge badge-primary text-primary mb-3 bg-info"> Available until ... </span>
+            <% else %>
+              <span class="badge badge-secondary text-danger mb-3 bg-warning"> Unavailable until ... </span>
+            <% end %>
+            <span class="badge badge-secondary mb-3"> <%= room.capacity %> </span>
+            <h5 class="card-title mb-2 text-dark"> <%= room.name %> </h5>
+            <p class="text-secondary mb-0"> Location: <%= room.location %> </p>
+            <p class="text-secondary mb-0"> Is Accessible? <%= room.is_accessible ? "Yes" : "No" %> </p>
+          </div>
+          <div class="col-md-10">
+            <%= line_chart room.reservations.group_by_day(:t_beginning).count, loading: "Loading Graph...", height: "150px" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="card post-card pb-3">
+      <% room.reservations.active_reservations.each do |reservation| %>
+        <%= link_to reservation_path(reservation.id), class: 'text-decoration-none' do %>
+          <hr>
+          <div class="row m-auto rounded text-center">
+            <div class="col-md-8 ">
+              <h6><%= reservation.subject %></h6>
+            </div>
+            <div class="col-auto m-auto">
+              <span class="badge badge-secondary text-primay bg-secondary">
+                <%= reservation.t_beginning.strftime("%d/%m/%y [%H:%M]") %> - <%= reservation.t_ending.strftime("%d/%m/%y [%H:%M]") %>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

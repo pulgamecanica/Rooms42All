@@ -1,0 +1,85 @@
+<span id="notice"><%= notice %></span>
+<div class="container rounded bg-light">
+  <div class="p-2">
+    <div class="mb-1 mt-1" id="collapseExample">
+      <div class="p-2">
+        <%= form_tag(search_rooms_path, method: "get", remote: true) do %>
+          <h1 class="text-center">Magic Filter</h1>
+          <h6 class="text-center">Search for the best room avaliable (relax & let us do our magic)</h6>
+          <hr>
+          <div class="row">
+            <div class="input-group text-center">
+              <div class="col-auto m-auto">
+                <h5>Capacity</h5>
+                <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitPlayers();' %>
+              </div>
+              <div class="col-auto m-auto">
+                <h5>Prority Access?</h5>
+                <%= check_box_tag :is_accessible, '', {class: "form-control"} , onchange:'clickSubmitPlayers();' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-group text-center">
+              <div class="col-12 m-2">
+                <h5>Start Time</h5>
+                <%= datetime_field_tag :start_date, '', class: 'form-control', onchange:'clickSubmitPlayers();' %>
+              </div>
+<!--               <div class="field">
+                          <= form.label :date >
+                          <= form.date_select :date, {}, class: "form-control">
+                        </div> -->
+              <div class="col-12 m-2">
+                <h5>End Time</h5> 
+                <%= datetime_field_tag :end_date, '', class: 'form-control', onchange:'clickSubmitPlayers();' %>
+              </div>
+            </div>
+          </div>
+          <div class="row ms-5 me-5 mt-3">
+              <%= submit_tag "Search", class: "d-none", id: "search_submit" %> 
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div id="rooms-containers">
+      <%= render "rooms", rooms: @rooms %>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 offset-md-4 col-sm-2 offset-sm-2">
+          <div class="d-flex justify-content-around">
+            <% if @page.nil? || @page <= 0 %>
+              <%= link_to "Prev_page", rooms_path(page: @page - 1), class: "btn btn-secondary text-dark disabled" %>
+            <% else %>
+              <%= link_to "Prev_page", rooms_path(page: @page - 1), class: "btn btn-primary" %>
+            <% end %>
+            <% if not @last.nil? and @last %>
+              <%= link_to "Next_page", rooms_path(page: @page + 1), class: "btn btn-secondary text-dark disabled"%>
+            <% else %>
+              <%= link_to "Next_page", rooms_path(page: @page + 1), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to 'New Room', new_room_path %>
+
+<script> 
+function clickSubmitPlayers() {
+  $("#search_submit").trigger("click");
+}
+function schedule_popup(id) {
+  let popup = document.getElementById("schedule-" + id);
+  popup.style.display = "block"
+}
+
+function schedule_close_popup(id) {
+  let popup = document.getElementById("schedule-" + id);
+  popup.style.display = "none"
+}
+
+</script>
