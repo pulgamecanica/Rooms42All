@@ -17,7 +17,7 @@
 					<div class="container col-auto m-3 text-center" id="new-res-form">
 						<button class="btn btn-primary" onclick="create_match()">New Reservation</button>
 					</div>
-					<% @room.reservations.active_reservations.order(:time_start).each do  |reservation| %>
+					<% @room.reservations.active_reservations.order(:t_beginning).each do  |reservation| %>
 						<% if reservation.persisted? %>
 							<%= link_to edit_reservation_path(reservation), class: "text-decoration-none" do %>
 								<h4 class="bg-light p-3 text-center">
