@@ -14,8 +14,12 @@
                 <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitPlayers();' %>
               </div>
               <div class="col-auto m-auto">
-                <h5>Prority Access?</h5>
+                <h5>Priority Access?</h5>
                 <%= check_box_tag :is_accessible, '', {class: "form-control"} , onchange:'clickSubmitPlayers();' %>
+              </div>
+              <div class="col-auto m-auto">
+                <h5>Projector Room</h5>
+                <%= check_box_tag :need_projector, '', class: "form-control", checked: "" , onchange:'clickSubmitPlayers();' %>
               </div>
             </div>
           </div>

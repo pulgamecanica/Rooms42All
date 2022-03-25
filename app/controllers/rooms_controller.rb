@@ -64,35 +64,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  def search_rooms
+
+  def create_array (find_min_cap, start_date, end_date, min_capacity)
     list = []
-    start_date = params[:start_date].to_datetime
-    end_date = params[:end_date].to_datetime
-    min_capacity = params[:capacity].to_i # to_i = to integer (becausse we are recieving a string....)
-    need_handicap_access = params[:is_accessible].nil? == true ? false : true
-    if min_capacity <= 0
-      return []
-    end
-    if end_date.nil? || start_date.nil?
-      return nil
-    elsif end_date < start_date
-      return nil
-    end
-
-    accessible_rooms = Room.free_schedule(start_date, end_date).where(is_available: true).where(is_accessible: true).where(capacity: min_capacity..)
-    accessible_rooms = accessible_rooms.order(:capacity)
-
-    # not_accessible_rooms = Room.free_schedule(start_date, end_date).where(is_accessible: false).where("is_available == ? AND capacity >= ?", true, min_capacity) # .and(Room.where(capacity: min_capacity - 2..min_capacity + 2))
-    not_accessible_rooms = Room.free_schedule(start_date, end_date).where(is_available: true).where(is_accessible: false).where(capacity: min_capacity..)
-    not_accessible_rooms = not_accessible_rooms.order(:capacity)
-    # Filter All rooms that are available AT ALL TIME BETWEEN START AND END
-    # find_min_cap = find_min_cap.sort {|a, b| b <=> a }
-
-    if (params[:is_accessible])
-      find_min_cap = accessible_rooms + not_accessible_rooms
-    else
-      find_min_cap = not_accessible_rooms + accessible_rooms
-    end
     find_min_cap.each do |room|
       res = room.reservations.build(t_beginning: start_date, t_ending: end_date)
       res.attendees = min_capacity
@@ -100,7 +74,34 @@ class RoomsController < ApplicationController
       res.t_ending = end_date
       list.push([room, res])
     end
-    @rooms = list
+    list
+  end
+
+  def search_rooms
+    start_date = params[:start_date].to_datetime
+    end_date = params[:end_date].to_datetime
+    min_capacity = params[:capacity].to_i # to_i = to integer (becausse we are recieving a string....)
+    need_handicap_access = params[:is_accessible].nil? == true ? false : true
+    need_projector = params[:need_projector].nil? == true ? false : true
+    if min_capacity <= 0 || end_date.nil? || start_date.nil?
+      return nil
+    end
+
+    accessible_rooms = Room.free_schedule(start_date, end_date).where(is_available: true).where(is_accessible: true).where(capacity: min_capacity..)
+    accessible_rooms = accessible_rooms.order(:capacity)
+    not_accessible_rooms = Room.free_schedule(start_date, end_date).where(is_available: true).where(is_accessible: false).where(capacity: min_capacity..)
+    not_accessible_rooms = not_accessible_rooms.order(:capacity)
+    if need_projector
+      accessible_rooms = accessible_rooms.where(has_projector: true)
+      not_accessible_rooms = not_accessible_rooms.where(has_projector: true)
+    end
+
+    if (params[:is_accessible])
+      find_min_cap = accessible_rooms + not_accessible_rooms
+    else
+      find_min_cap = not_accessible_rooms + accessible_rooms
+    end
+    @rooms = create_array(find_min_cap, start_date, end_date, min_capacity)
   end
 
   private
