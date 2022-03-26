@@ -1,0 +1,37 @@
+* {
+	scroll-behavior: smooth;
+	box-sizing: border-box !important;
+	padding: 0;
+	margin: 0;
+}
+
+.float-right {
+	padding: 1rem;
+	position: fixed;
+	right: 10px;
+	z-index: 10;
+	a {
+		display: block;
+		margin-top: 1em;
+		border-radius: 0.5em;
+		&:hover {
+			transform: scale(110%);
+		}
+	}
+	a:last-child {
+		background: pink;
+		svg {
+			padding: 5px;
+		}
+	}
+}
+
+.main-container {
+	background-image: image_url(asset_path('bg_1.jpg'));
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	width: 100vw;
+	height: 100vh;
+	overflow: scroll;
+}

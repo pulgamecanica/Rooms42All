@@ -1,16 +1,17 @@
+<%= javascript_pack_tag 'room' %>
 <% rooms.each do |room| %>
-  <div class="card mb-3 post-card">
+  <div class="card mb-3 post-card room-card" data-room-id="<%= room.id %>">
     <%= link_to edit_room_path(room.id), class: 'text-decoration-none' do %>
       <div class="card-body">
         <div class="row">
           <div class="col-md-2">
             <% if room.is_available %>
-              <span class="badge badge-primary text-primary mb-3 bg-info"> Available until ... </span>
+              <span class="badge badge-primary text-primary bg-info"> Available until ... </span>
             <% else %>
-              <span class="badge badge-secondary text-danger mb-3 bg-warning"> Unavailable until ... </span>
+              <span class="badge badge-secondary text-danger bg-warning"> Unavailable until ... </span>
             <% end %>
-            <span class="badge badge-secondary mb-3"> <%= room.capacity %> </span>
-            <h5 class="card-title mb-2 text-dark"> <%= room.name %> </h5>
+            <span class="badge badge-secondary text-light mb-2 bg-secondary">Capacity <%= room.capacity %> </span>
+            <h5 class="card-title text-dark"> <%= room.name %> </h5>
             <p class="text-secondary mb-0"> Location: <%= room.location %> </p>
             <p class="text-secondary mb-0"> Is Accessible? <%= room.is_accessible ? "Yes" : "No" %> </p>
           </div>
@@ -20,15 +21,23 @@
         </div>
       </div>
     <% end %>
-    <div class="card post-card pb-3">
+    <button type="button" class="btn btn-light">
+      <svg version="1.1"
+         viewBox="0 0 330 330" height="30">
+      <path d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+        c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+        s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
+      </svg>
+    </button>
+    <div class="card post-card room-card-reservations" id="room-<%= room.id %>-reservations">
       <% room.reservations.active_reservations.each do |reservation| %>
         <%= link_to reservation_path(reservation.id), class: 'text-decoration-none' do %>
           <hr>
-          <div class="row m-auto rounded text-center">
-            <div class="col-md-8 ">
+          <div class="d-flex justify-content-between p-2 text-center reservation-flex">
+            <div class="col-md-8 p-0">
               <h6><%= reservation.subject %></h6>
             </div>
-            <div class="col-auto m-auto">
+            <div class="col-md-3 p-0">
               <span class="badge badge-secondary text-primay bg-secondary">
                 <%= reservation.t_beginning.strftime("%d/%m/%y [%H:%M]") %> - <%= reservation.t_ending.strftime("%d/%m/%y [%H:%M]") %>
               </span>
@@ -36,6 +45,17 @@
           </div>
         <% end %>
       <% end %>
+      <div class="d-grid">
+      <button type="button" class="btn btn-light">
+        <svg version="1.1" height="30"
+        viewBox="0 0 330 330">
+        <path d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394
+          l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393
+          C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"/>
+        </svg>
+      </button>
+      </div>
     </div>
   </div>
 <% end %>
+<hr>
