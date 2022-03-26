@@ -1,6 +1,27 @@
 // Place all the styles related to the Rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+#room-container {
+	background-color: rgba(0, 0, 0, 0.4);
+	min-width: 80vw;
+	min-height: 100vh;
+	#room-reservations-container {
+		max-height: 60vh;
+		display: block;
+		overflow: scroll;
+	}
+	.row {
+		.card-edit {
+			height: 100%;
+		}
+		.card {
+			background-color: rgba(248, 249, 250, 0.8);
+			&:hover {
+				background-color: rgba(248, 249, 250, 0.95);
+			}
+		}
+	}
+}
 #rooms-container {
 	background-color: rgba(248, 249, 250, 0.9);
 	border-radius: 0 0 1rem 1rem;
@@ -34,11 +55,6 @@
 				}
 			}
 		}
-	}
-	#room-reservations-container {
-		max-height: 60vh;
-		display: block;
-		overflow: scroll;
 	}
 	.room-card {
 		.room-card-reservations {

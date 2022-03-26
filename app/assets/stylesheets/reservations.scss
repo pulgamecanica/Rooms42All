@@ -1,26 +1,24 @@
 // Place all the styles related to the Reservations controller here.
 // They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-body {
-	min-height: 100vh;
-	box-size: 0;
-}
+// You can use Sass (SCSS) here: https://sass-lang.com/	
 
-.container-edit {
-	background-color: rgba(200, 200, 200, 0.2);
-	margin: auto;
-	text-align: center;
-	height: 100%;
-	padding-top: 5rem;
+#reservations-container {
+	background-color: rgba(248, 249, 250, 0.8);
 	border-radius: 1rem;
-	.field
-	{
-		margin-top: 2px;
-		.box-1 {
-			margin:	auto;
-			padding: 1rem;
-			display: inline-block;
-			width: auto;
+	.row {
+		.borders
+		{
+			padding: 0.5rem;
+			h4 {
+				padding: 0.5rem;
+				border-radius: 0.5rem;
+				border: solid;
+			}
+		}
+	}
+	.card {
+		&:hover .col-bg {
+			background-color: rgba(0, 0, 0, 0.25) !important;
 		}
 	}
 }
