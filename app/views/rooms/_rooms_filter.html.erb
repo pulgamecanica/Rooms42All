@@ -68,12 +68,12 @@
                           <%= form.text_field :email, placeholder: "Example@example.com" %>
                         </div>
                         <div class="field">
-                          <%= form.label :subject %>
-                          <%= form.text_area :subject %>
+                          <%= form.text_area :subject, placeholder: "Subject" %>
                         </div>
-                        <%= form.submit 'Schedule', class: "btn btn-lg btn-success text-primay bg-success" %>
-                        <button type="button" class="btn btn-lg btn-danger text-dark text-center d-block bg-danger m-auto" onclick="schedule_close_popup('<%= room.first.id %>')">Close</button>
-
+                        <div class="buttons-bottom">
+                          <%= form.submit 'Schedule', class: "btn btn-lg btn-success text-primay bg-success" %>
+                          <button type="button" class="btn btn-lg btn-danger text-dark text-center d-block bg-danger m-auto" onclick="schedule_close_popup('<%= room.first.id %>')">Close</button>
+                        </div>
                       <% end %>
                     </div>
               </div>

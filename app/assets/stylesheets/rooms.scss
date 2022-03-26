@@ -28,7 +28,8 @@
 	#form1 {
 		.pop-up-schedule {
 			display: none;
-			background: rgba(190, 210, 255, 0.9);
+			background: white;
+			border: 2px solid darkgrey;
 			border-radius: 0.5rem;
 			position: fixed;
 			top: 50%;
@@ -40,7 +41,7 @@
 			width: 90vw;
 			min-height: 50vh;
 			form{
-				height: 50vh;
+				height: 35vh;
 				input {
 					width: 60%;
 					padding: 1rem;
@@ -48,10 +49,17 @@
 				}
 				textarea {
 					width: 80%;
-					min-height: 50px;
+					height: 200px;
 					max-height: 30vh;
 					padding: 1rem;
 					margin: auto;
+				}
+				.buttons-bottom {
+				    bottom: 0;
+				    position: absolute;
+				    left: 0;
+				    margin: 2rem !important;
+				    width: -webkit-fill-available;
 				}
 			}
 		}

@@ -16,7 +16,7 @@
 					<p class="card-title text-center display-6">Reservations <span class="bg-info badge badge-primary"><%= @room.reservations.active_reservations.count %></span></p>
 					<hr>
 					<div class="container col-auto m-3 text-center" id="new-res-form">
-						<button class="btn btn-primary" onclick="create_match()">New Reservation</button>
+						<button class="btn-lg btn-primary" onclick="create_match()">New Reservation</button>
 					</div>
 					<% @room.reservations.active_reservations.order(:t_beginning).each do  |reservation| %>
 						<% if reservation.persisted? %>
