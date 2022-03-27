@@ -1,4 +1,13 @@
-<h1>Editing Reservation</h1>
-<%= render 'form', reservation: @reservation %>
-<%= link_to 'Show', @reservation %> |
-<%= link_to 'Back', reservations_path %>
+<div class="container" id="reservation-container">
+	<%= link_to 'Back', reservations_path, class: 'btn btn-secondary btn-lg mt-3 mb-3' %>
+	<main>
+		<div class="card">
+			<div class="card-body m-auto">
+				<%= render 'form', reservation: @reservation %>
+				<div class="text-center">
+				<%= link_to 'Destroy Reservation', @reservation, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-danger mt-1" %>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

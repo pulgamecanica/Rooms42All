@@ -13,40 +13,40 @@
 
   <div class="field">
     <%= form.label :room_id %>
-    <%= form.text_field :room_id %>
+    <%= form.collection_select :category_id, Room.all, :id, :name, {}, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">
-    <%= form.label :t_beginning %>
-    <%= form.datetime_select :t_beginning %>
+    <%= form.label :start %>
+    <%= form.datetime_select :t_beginning, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">
-    <%= form.label :t_ending %>
-    <%= form.datetime_select :t_ending %>
+    <%= form.label :end %>
+    <%= form.datetime_select :t_ending, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">
     <%= form.label :attendees %>
-    <%= form.number_field :attendees %>
+    <%= form.number_field :attendees, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">
     <%= form.label :subject %>
-    <%= form.text_field :subject %>
+    <%= form.text_field :subject, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">
-    <%= form.label :reservation_code %>
-    <%= form.text_field :reservation_code %>
+    <%= form.label :code %>
+    <%= form.text_field :reservation_code, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, disabled: !@edit.nil? && !@edit %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <hr class="m-0 pb-0 mt-3">
+  <div class="actions text-center">
+    <%= form.submit class:"btn btn-lg btn-primary m-4 submmit-reservation", disabled: !@edit.nil? && !@edit %>
   </div>
 <% end %>

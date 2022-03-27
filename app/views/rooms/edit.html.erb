@@ -4,7 +4,6 @@
 		<div class="col-md-3 mb-3">
 			<div class="card card-edit">
 				<div class="card-body text-center">
-					<p class="card-title text-center display-6">Editing Room</p>
 					<%= render 'form', room: @room %>
 					<%= link_to 'Destroy Room', @room, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-danger mt-1" %>
 				</div>

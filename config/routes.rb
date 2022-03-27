@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   # get "reservations:id", to: "reservations#show"
   # get "reservations:id/edit", to: "reservations#edit"
   # post "reservations", to: "reservations#create"
-  resources :rooms, only: [:index, :new, :edit, :update, :destroy]
-  resources :reservations, only: [:index, :new, :edit, :update, :destroy]
+  resources :rooms, only: [:index, :create, :new, :edit, :update, :destroy]
+  resources :reservations, only: [:index, :create, :new, :edit, :update, :destroy]
   get 'search_rooms', to: 'rooms#search_rooms'
   get 'filter_reservations', to: 'reservations#filter_reservations'
   root to: 'rooms#index'

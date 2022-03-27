@@ -22,9 +22,9 @@
   <%= render 'reservations_list', reservations: @reservations %>
   </div>
 </div>
-<%= link_to 'New Reservation',  new_reservation_path %>
-
-
+<div class="text-center mb-5">
+<%= link_to 'New Reservation',  new_reservation_path, class: 'btn btn-primary btn-lg mt-4'%>
+</div>
 <script>
   function clickSubmitSort() {
     $("#sort_submit").trigger("click");
