@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   # get "reservations#index", to: "reservations#index"
   # get "reservations#new", to: "reservations#new"
   # get "reservations:id", to: "reservations#show"
