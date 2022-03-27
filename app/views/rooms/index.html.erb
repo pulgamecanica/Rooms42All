@@ -12,7 +12,7 @@
             <div class="input-group text-center">
               <div class="col-auto m-auto">
                 <h5>Capacity</h5>
-                <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitFilter();' %>
+                <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitFilter();', onchange:'clickSubmitFilter();' %>
               </div>
               <div class="col-auto m-auto">
                 <h5>Priority Access?</h5>
@@ -48,10 +48,7 @@
               </div>
             </div>
           </div>
-          <div class="row ms-5 me-5 mt-3">
-              <%= submit_tag "Search", class: "d-none", id: "search_submit" %> 
-
-          </div>
+          <%= submit_tag "Search", class: "d-none", id: "search_submit" %> 
         <% end %>
       </div>
     </div>
@@ -112,5 +109,4 @@ function schedule_close_popup(id) {
   let popup = document.getElementById("schedule-" + id);
   popup.style.display = "none"
 }
-
 </script>

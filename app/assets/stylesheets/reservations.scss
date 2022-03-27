@@ -8,11 +8,15 @@
 	.row {
 		.borders
 		{
+			cursor: pointer;
 			padding: 0.5rem;
 			h4 {
 				padding: 0.5rem;
 				border-radius: 0.5rem;
 				border: solid;
+				&:hover {
+					background-color: rgba(200, 200, 200, 0.6);
+				}
 			}
 		}
 	}

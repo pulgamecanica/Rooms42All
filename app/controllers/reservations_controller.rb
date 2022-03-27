@@ -58,6 +58,28 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def filter_reservations
+    filter = params[:filter].to_i
+    if (filter.nil? || filter == 0)
+      return
+    end
+    @reservations = Reservation.active_reservations
+    case filter
+    when 1
+      @reservations = @reservations.joins(:room).merge(Room.order(:name))
+    when 2
+      @reservations = @reservations.order(:subject)
+    when 3
+      @reservations = @reservations.order(:t_beginning)
+    when 4
+      @reservations = @reservations.joins(:room).merge(Room.order(name: :desc))
+    when 5
+      @reservations = @reservations.order(subject: :desc)
+    when 6
+      @reservations = @reservations.order(t_beginning: :desc)
+    end
+  end
+
   private
   def set_finished
     Reservation.active_reservations.each do |r|

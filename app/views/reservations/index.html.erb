@@ -1,20 +1,40 @@
+<%= javascript_pack_tag 'room' %>
+
 <p id="notice"><%= notice %></p>
 <div class="container rounded text-center m-auto" id="reservations-container">
-  <h1 class="text-center display-5">Reservations</h1>
+  <h1 class="text-center display-5">Reservations <span class="badge bg-info badge-info text-light p-2"><%= @reservations.count %></span></h1>
   <hr>
-  <div class="row m-4 rounded text-center">
-    <div class="col-md-4 rounded-start borders">
-      <h4> Room </h4>
+  <%= form_tag(filter_reservations_path, method: "get", remote: true) do %>
+    <div class="row m-4 rounded text-center">
+      <div class="col-md-4 rounded-start borders">
+        <span class="d-none"> <%= number_field_tag(:filter, '0')%></span>
+        <h4 onclick="clickFilter(1)"> Room </h4>
+      </div>
+      <div class="col-md-5 borders">
+        <h4 onclick="clickFilter(2)"> Subject [attendees] </h4>
+      </div>
+      <div class="col-md-3 borders">
+        <h4 onclick="clickFilter(3)"> Date </h4>
+      </div>
     </div>
-    <div class="col-md-5 borders">
-      <h4> Subject [attendees] </h4>
-    </div>
-    <div class="col-md-3 borders">
-      <h4> Date </h4>
-    </div>
-  </div>
+    <%= submit_tag "Search", class: "d-none", id: "sort_submit" %> 
+  <% end %>
+  <div id="reservations-list-container">
   <%= render 'reservations_list', reservations: @reservations %>
+  </div>
 </div>
 <%= link_to 'New Reservation',  new_reservation_path %>
 
 
+<script>
+  function clickSubmitSort() {
+    $("#sort_submit").trigger("click");
+  }
+  function clickFilter(filter) {
+    if (filter == $("#filter").val()) {
+      filter += 3;
+    }
+    $("#filter").val(filter);
+    clickSubmitSort(filter);
+  }
+</script>
