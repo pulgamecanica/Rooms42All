@@ -1,14 +1,15 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
+  before_action :set_finished
 
   # GET /reservations or /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.active_reservations
   end
 
-  # GET /reservations/1 or /reservations/1.json
-  def show
-  end
+  # # GET /reservations/1 or /reservations/1.json
+  # def show
+  # end
 
   # GET /reservations/new
   def new
@@ -58,6 +59,18 @@ class ReservationsController < ApplicationController
   end
 
   private
+  def set_finished
+    Reservation.active_reservations.each do |r|
+      if (r.t_beginning < DateTime.now && r.t_ending < DateTime.now)
+        r.update(finished: true)
+        if not r.save
+          p "*" * 100
+          puts r.errors.full_messages
+          p "*" * 100
+        end
+      end
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
       @reservation = Reservation.find(params[:id])

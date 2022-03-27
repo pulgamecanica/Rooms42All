@@ -1,5 +1,16 @@
-<h1>New Room</h1>
+<div class="container" id="room-container">
+	<%= link_to 'Back', rooms_path, class: 'btn btn-secondary btn-lg mt-3 mb-3' %>
+	<div class="card card-edit">
+		<div class="card-body text-center">
+			<p class="card-title text-center display-4">New Room</p>
+			<%= render 'form', room: @room %>
+		</div>
+	</div>
+</div>
 
-<%= render 'form', room: @room %>
+<script>
+function create_reservation() {
+	$("#new-res-form").html("<%= j render 'new_reservation' %>");
+}
+</script>
 
-<%= link_to 'Back', rooms_path %>

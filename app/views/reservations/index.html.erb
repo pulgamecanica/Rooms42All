@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<div class="container text-center m-auto" id="reservations-container">
+<div class="container rounded text-center m-auto" id="reservations-container">
   <h1 class="text-center display-5">Reservations</h1>
   <hr>
   <div class="row m-4 rounded text-center">
@@ -13,29 +13,8 @@
       <h4> Date </h4>
     </div>
   </div>
-  <% @reservations.order(:t_beginning).each do |reservation| %>
-    <%= link_to edit_reservation_path(reservation), class: 'text-decoration-none' do %>
-      <div class="card m-2">
-        <div class="card-body p-0">
-          <div class="row m-0 p-0 rounded text-center">
-            <div class="col-md-4 p-3 bg-light rounded-start col-bg">
-              <h5 class=""><%= reservation.subject %> <%= reservation.room.name %><h5>
-            </div>
-            <div class="col-md-5 p-3 bg-white col-bg">
-              <h5><span class=""><%= reservation.subject %></span> <span class="badge badge-pill badge-info bg-info ms-5"><%= reservation.attendees %> attendees</span></h5>
-            </div>
-            <div class="col-md-3 p-3 bg-light col-bg">
-            <% if reservation.t_beginning < Date.tomorrow %>
-                <h5 class="text-dark text-center"><%= reservation.t_beginning.strftime("%H:%M") %> - <%= reservation.t_ending.strftime("%H:%M") %></h5>
-            <% else %>
-                <h5 class="text-dark text-center">In <%= (reservation.t_beginning.to_date - Date.today).to_i %> days...</h5>
-            <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <hr>
-  <% end %>
+  <%= render 'reservations_list', reservations: @reservations %>
 </div>
 <%= link_to 'New Reservation',  new_reservation_path %>
+
+

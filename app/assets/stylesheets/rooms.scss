@@ -1,6 +1,33 @@
 // Place all the styles related to the Rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.room-field {
+	margin: 1rem;
+	input {
+		min-width: 50px;
+	}
+	textarea {
+		min-width: 250px;
+		min-height: 50px;
+	}
+}
+
+.room-elements {
+	.table {
+		margin: auto;
+		width: 40%;
+		svg {
+			height: 30px;
+		}
+		input {
+			&[type="checkbox"] {
+				width: 30px;
+				height: 30px;
+			}
+		}
+	}
+}
+
 #room-container {
 	background-color: rgba(0, 0, 0, 0.4);
 	min-width: 80vw;

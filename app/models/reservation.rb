@@ -5,7 +5,7 @@ class Reservation < ApplicationRecord
   validates :attendees, presence: true
   validates :subject, presence: true
   validates :email, presence: true
-  validate :validate_attendees, :validate_date, :validate_email
+  validate :validate_attendees, :validate_date, :validate_email, on: :create
 
 
   scope :active_reservations, -> do

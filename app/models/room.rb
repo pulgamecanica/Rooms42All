@@ -10,7 +10,7 @@ class Room < ApplicationRecord
     }
 
 	def validate_capacity
-		if (capacity < 1)
+		if (capacity.nil? || capacity < 1)
 			errors.add(:capacity, "has to be bigger then 0!")
 		end
 	end

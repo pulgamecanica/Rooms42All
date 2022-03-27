@@ -3,10 +3,10 @@
 	<div class="row">
 		<div class="col-md-3 mb-3">
 			<div class="card card-edit">
-				<div class="card-body">
+				<div class="card-body text-center">
 					<p class="card-title text-center display-6">Editing Room</p>
 					<%= render 'form', room: @room %>
-					<%= link_to 'Destroy Room', @room, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger mt-1" %>
+					<%= link_to 'Destroy Room', @room, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-danger mt-1" %>
 				</div>
 			</div>		
 		</div>
@@ -16,7 +16,7 @@
 					<p class="card-title text-center display-6">Reservations <span class="bg-info badge badge-primary"><%= @room.reservations.active_reservations.count %></span></p>
 					<hr>
 					<div class="container col-auto m-3 text-center" id="new-res-form">
-						<button class="btn-lg btn-primary" onclick="create_match()">New Reservation</button>
+						<button class="btn-lg btn-primary" onclick="create_reservation()">New Reservation</button>
 					</div>
 					<% @room.reservations.active_reservations.order(:t_beginning).each do  |reservation| %>
 						<% if reservation.persisted? %>
@@ -40,7 +40,7 @@
 </div>
 
 <script>
-function create_match() {
+function create_reservation() {
 	$("#new-res-form").html("<%= j render 'new_reservation' %>");
 }
 </script>

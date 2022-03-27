@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # get "reservations:id", to: "reservations#show"
   # get "reservations:id/edit", to: "reservations#edit"
   # post "reservations", to: "reservations#create"
-  resources :rooms
-  resources :reservations
+  resources :rooms, only: [:index, :new, :edit, :update, :destroy]
+  resources :reservations, only: [:index, :new, :edit, :update, :destroy]
   get 'search_rooms', to: 'rooms#search_rooms'
   root to: 'rooms#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

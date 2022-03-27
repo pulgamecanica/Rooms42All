@@ -12,23 +12,23 @@
             <div class="input-group text-center">
               <div class="col-auto m-auto">
                 <h5>Capacity</h5>
-                <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitPlayers();' %>
+                <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitFilter();' %>
               </div>
               <div class="col-auto m-auto">
                 <h5>Priority Access?</h5>
-                <%= check_box_tag :is_accessible, '', {class: "form-control"} , onchange:'clickSubmitPlayers();' %>
+                <%= check_box_tag(:is_accessible, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
               <div class="col-auto m-auto">
                 <h5>Projector Room</h5>
-                <%= check_box_tag :need_projector, '', {class: "form-control"}, onchange:'clickSubmitPlayers();' %>
+                <%= check_box_tag(:need_projector, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
               <div class="col-auto m-auto">
                 <h5> Audio System</h5>
-                <%= check_box_tag :audio_system, '', {class: "form-control"}, onchange:'clickSubmitPlayers();' %>
+                <%= check_box_tag(:audio_system, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
                <div class="col-auto m-auto">
                 <h5> Has Desk</h5>
-                <%= check_box_tag :had_desk, '', {class: "form-control"}, onchange:'clickSubmitPlayers();' %>
+                <%= check_box_tag(:had_desk, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
             <div class="input-group text-center">
               <div class="col-12 m-2">
                 <h5>Start Time</h5>
-                <%= datetime_field_tag :start_date, '', class: 'form-control', onchange:'clickSubmitPlayers();' %>
+                <%= datetime_field_tag :start_date, '', class: 'form-control', onchange:'clickSubmitFilter();' %>
               </div>
 <!--               <div class="field">
                           <= form.label :date >
@@ -44,7 +44,7 @@
                         </div> -->
               <div class="col-12 m-2">
                 <h5>End Time</h5> 
-                <%= datetime_field_tag :end_date, '', class: 'form-control', onchange:'clickSubmitPlayers();' %>
+                <%= datetime_field_tag :end_date, '', class: 'form-control', onchange:'clickSubmitFilter();' %>
               </div>
             </div>
           </div>
@@ -94,13 +94,13 @@
           <% end %>
         </div>
       </div>
+      <%= link_to 'New Room', new_room_path, class: 'btn btn-primary btn-lg mt-4'%>
     </div>
   </div>
 </div>
-<%= link_to 'New Room', new_room_path %>
 
 <script> 
-function clickSubmitPlayers() {
+function clickSubmitFilter() {
   $("#search_submit").trigger("click");
 }
 function schedule_popup(id) {

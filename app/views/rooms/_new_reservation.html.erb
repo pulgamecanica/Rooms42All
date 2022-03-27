@@ -1,13 +1,14 @@
 <div class="form-group">
   <%= form_with model: @new_reservation do |form| %> 
+
   <div class="field">
-    <%= form.label :time_start %>
-    <%= form.datetime_select :time_start %>
+    <%= form.label :beginning %>
+    <%= form.datetime_select :t_beginning %>
   </div>
 
   <div class="field">
-    <%= form.label :time_end %>
-    <%= form.datetime_select :time_end %>
+    <%= form.label :ending %>
+    <%= form.datetime_select :t_ending %>
   </div>
 
   <div class="field">
