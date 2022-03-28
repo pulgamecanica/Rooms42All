@@ -9,36 +9,40 @@ rooms = 10
 reservations = 10
 
 rooms.times do |x|
+	capacity = rand(1..50)
 	room = Room.create!(
-			capacity: rand(1..50),
+			capacity: capacity,
 			is_available: true,
 			name: Faker::Superhero.power + " " + Faker::ProgrammingLanguage.name,
 			location: Faker::Nation.capital_city,
 			is_accessible: rand(1..2) % 2 == 0,
 			has_projector: rand(1..2) % 2 == 0,
-			audio_system: rand(1..3) % 2 == 0,
-			had_desk: rand(1..3) % 2 == 0,
+			audio_system: rand(1..2) % 2 == 0,
+			had_desk: rand(1..2) % 2 == 0,
 		)
 	if room.save
 		reservations.times do |y|
-			start_date = Faker::Date.between(from: 1.days.after, to: 20.days.after).to_datetime
-			start_date = start_date.change(hour: rand(0..20))
-			start_date = start_date.change(min: rand(0..59))
-			start_date = start_date.change(sec: rand(0..59))
-			end_date = start_date
-			end_date = end_date.change(hour: start_date.hour + 2)
-			end_date = end_date.change(min: rand(0..59))
-			end_date = end_date.change(sec: rand(0..59))
-			res = Reservation.create!(
-					t_beginning: start_date,
-					t_ending: end_date,
-					attendees: rand(1..50),
-					subject: Faker::Science.science,
-					reservation_code: Faker::Code.npi,
-					email: Faker::Internet.email,
-					room: room
-				)
-			res.save
+			attendees = rand(1..50)
+			if (attendees <= capacity)
+				start_date = Faker::Date.between(from: 1.days.after, to: 20.days.after).to_datetime
+				start_date = start_date.change(hour: rand(0..18))
+				start_date = start_date.change(min: rand(0..59))
+				start_date = start_date.change(sec: rand(0..59))
+				end_date = start_date
+				end_date = end_date.change(hour: start_date.hour + rand(1..4))
+				end_date = end_date.change(min: rand(0..59))
+				end_date = end_date.change(sec: rand(0..59))
+				res = Reservation.create!(
+						t_beginning: start_date,
+						t_ending: end_date,
+						attendees: attendees,
+						subject: Faker::Science.science,
+						reservation_code: Faker::Code.npi,
+						email: Faker::Internet.email,
+						room: room
+					)
+				res.save
+			end
 		end
 	end
 end

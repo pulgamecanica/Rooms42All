@@ -10,6 +10,7 @@
 		display: grid;
 		align-content: center;
 		.card {
+			overflow: scroll;
 			.card-body {
 				form {
 					label {

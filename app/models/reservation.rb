@@ -18,7 +18,7 @@ class Reservation < ApplicationRecord
     elsif room.nil?
       errors.add(:room, "can't be blank")
     elsif attendees > room.capacity
-      errors.add(:room, "Room capacity is [#{room.capacity}]")
+      errors.add(:room, "capacity is [#{room.capacity}]")
     end
   end
 
