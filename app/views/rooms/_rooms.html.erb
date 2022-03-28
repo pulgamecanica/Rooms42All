@@ -30,7 +30,7 @@
     </button>
     <div class="card post-card room-card-reservations" id="room-<%= room.id %>-reservations">
       <% room.reservations.active_reservations.each do |reservation| %>
-        <%= link_to reservation_path(reservation.id), class: 'text-decoration-none' do %>
+        <%= link_to edit_reservation_path(reservation.id), class: 'text-decoration-none' do %>
           <hr>
           <div class="d-flex justify-content-between p-2 text-center reservation-flex">
             <div class="col-md-8 p-0">
