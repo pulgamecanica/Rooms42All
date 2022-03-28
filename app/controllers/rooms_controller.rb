@@ -82,7 +82,14 @@ class RoomsController < ApplicationController
     need_projector = params[:need_projector].nil? == true ? false : true
     need_audio = params[:audio_system].nil? == true ? false : true
     need_desk = params[:had_desk].nil? == true ? false : true
-    if min_capacity <= 0 || end_date.nil? || start_date.nil?
+    if end_date.nil? || start_date.nil?
+      @error = "Choose a date"
+      return nil
+    elsif min_capacity <= 0
+      @error = "Capacity must be > 0"
+      return nil
+    elsif start_date >= end_date
+      @error = "Wrong dates"
       return nil
     end
 

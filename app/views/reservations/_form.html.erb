@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :room_id %>
-    <%= form.collection_select :category_id, Room.all, :id, :name, {}, disabled: !@edit.nil? && !@edit %>
+    <%= form.collection_select :room_id, Room.all, :id, :name, {}, disabled: !@edit.nil? && !@edit %>
   </div>
 
   <div class="field">

@@ -1,7 +1,8 @@
 <% if rooms.nil? || rooms.empty? %>
-  <h3 class="display-3 text-center p-5 bg-warning rounded">
+  <p class="display-1 text-center p-5 bg-warning rounded">
     No results
-  </h3>
+    <span class="d-block display-6"><%= @error %></span>
+  </p>
   <div class="m-auto text-center">
     <h6 class="btn btn-lg btn-outline-info">Showing All Rooms</h6>
   </div>

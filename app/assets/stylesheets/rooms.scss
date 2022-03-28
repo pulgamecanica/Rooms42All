@@ -52,6 +52,41 @@
 #rooms-container {
 	background-color: rgba(248, 249, 250, 0.9);
 	border-radius: 0 0 1rem 1rem;
+	#filter-room {
+		form {
+			.icon-container {
+				position: relative;
+				label {
+					display: inline;
+				}
+				p {
+					z-index: 12;
+					background-color: rgba(0, 0, 0, 0.8);
+					padding: 1rem;
+					color: rgb(235, 239, 255);
+					border-radius: 1rem 1rem 1rem 0;
+					white-space: nowrap;
+					position: absolute;
+					bottom: 50%;
+					left: 65%;
+  					transform: rotate(-5deg);
+					display: none;
+					
+				}
+				svg {
+					margin: 0.5rem;
+				}
+				&:hover p {
+					display: block;
+				}
+			}
+			input[type="checkbox"]
+			{
+				width: 30px;
+				height: 30px;
+			}
+		}
+	}
 	#form1 {
 		.pop-up-schedule {
 			display: none;

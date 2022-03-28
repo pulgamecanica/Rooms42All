@@ -3,7 +3,7 @@
 <div class="container bg-transp" id="rooms-container">
   <div class="p-2">
     <div class="mb-1 mt-1" id="collapseExample">
-      <div class="p-2">
+      <div class="p-2" id="filter-room">
         <%= form_tag(search_rooms_path, method: "get", remote: true) do %>
           <h1 class="text-center display-4">Magic Filter</h1>
           <h6 class="text-center">Search for the best room avaliable (relax & let us do our magic)</h6>
@@ -15,19 +15,31 @@
                 <%= number_field_tag :capacity, '', class: 'form-control', placeholder: 'Capacity...', onkeyup:'clickSubmitFilter();', onchange:'clickSubmitFilter();' %>
               </div>
               <div class="col-auto m-auto">
-                <h5>Priority Access?</h5>
+                <span class="icon-container">
+                  <p >Handicap</p>
+                  <label for="is_accessible"><%= render 'handicap' %></label>
+                </span>
                 <%= check_box_tag(:is_accessible, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
               <div class="col-auto m-auto">
-                <h5>Projector Room</h5>
+                <span class="icon-container">
+                  <p>Projecto</p>
+                  <label for="need_projector"><%= render 'projector' %></label>
+                </span>
                 <%= check_box_tag(:need_projector, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
               <div class="col-auto m-auto">
-                <h5> Audio System</h5>
+                <span class="icon-container">
+                  <p>Audio System</p>
+                  <label for="audio_system"><%= render 'audio_system' %></label>
+                </span>
                 <%= check_box_tag(:audio_system, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
                <div class="col-auto m-auto">
-                <h5> Has Desk</h5>
+                <span class="icon-container">
+                  <p>Desk</p>
+                  <label for="had_desk"><%= render 'desk' %></label>
+                </span>
                 <%= check_box_tag(:had_desk, '', checked = false, onchange:'clickSubmitFilter();')%>
               </div>
             </div>

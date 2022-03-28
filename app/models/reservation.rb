@@ -15,6 +15,10 @@ class Reservation < ApplicationRecord
   def validate_attendees
     if (attendees.nil? or attendees < 1)
       errors.add(:attendees, "has to be bigger then 0!")
+    elsif room.nil?
+      errors.add(:room, "can't be blank")
+    elsif attendees > room.capacity
+      errors.add(:room, "Room capacity is [#{room.capacity}]")
     end
   end
 
