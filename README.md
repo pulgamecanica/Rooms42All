@@ -1,7 +1,7 @@
 # README
 
 ## bi4all Hackaton challenge
-#### This challenge was to develop a system manage the rooms in 'cidade bi4all'
+#### This challenge was to develop a system manager for the rooms in 'cidade bi4all'
 #### Our solution will offer the best Filter System which helps pick up the BEST Room availabe in real time.
 #### In a matter of minutes you can pickup the room with the specfications you want and create it with just one click!
 
